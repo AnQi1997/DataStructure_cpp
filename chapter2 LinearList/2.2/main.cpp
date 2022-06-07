@@ -75,6 +75,7 @@ int main() {
     } else {
         printf("≤Â»Î ß∞‹\n");
     }
+
     ret = ListDelete(L, 1, del);
     if (ret) {
         printf("…æ≥˝≥…π¶\n");
