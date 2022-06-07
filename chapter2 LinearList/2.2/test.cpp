@@ -41,7 +41,8 @@ bool ListInsert(SqList& L, int i, ElemType e) {
  * @brief
  * 删除顺序表L中第i(1 <= i <= L.length)个位置的元素，可引用变量e返回。
  * 若i的输入不合法，则返回false。
- * 否则，将被删元素赋给引用变量e，并将第i+1个元素及其后的所有元素依次往前移动一个位置，返回true
+ * 否则，将被删元素赋给引用变量e，
+ * 并将第i+1个元素及其后的所有元素依次往前移动一个位置，返回true
  *
  * @param L
  * @param i：位序
@@ -97,12 +98,35 @@ int main() {
     L.length = 3;
     PrintList(L);
 
-    bool ret;
-    ret = ListInsert(L, 2, 100);
-    if (ret) {
+    printf("--------------\n");
+    //插入
+    bool ret1;
+    ret1 = ListInsert(L, 2, 100);
+    if (ret1) {
         PrintList(L);
         printf("插入成功！\n");
     } else {
         printf("插入失败！\n");
+    }
+    printf("--------------\n");
+    //删除
+    bool ret2;
+    ElemType delE;  //返回变量
+    PrintList(L);
+    ret2 = ListDelete(L, 2, delE);
+    if (ret2) {
+        PrintList(L);
+        printf("删除成功!\n");
+    } else {
+        printf("删除失败！\n");
+    }
+    printf("--------------\n");
+
+    int ret3 = LocateElem(L, 6);
+    printf("元素位序：%d\n", ret3);
+    if(ret3){
+        printf("查找成功!\n");
+    }else{
+        printf("查找失败!\n");
     }
 }
