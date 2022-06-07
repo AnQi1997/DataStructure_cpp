@@ -98,9 +98,9 @@ bool del_s_2_t_2(SqList& L, ElemType s, ElemType t) {
         return false;
     int count = 0;
     for (int i = 0; i < L.length; i++) {
-        if (L.data[i] >= s && L.data[i] <= t) {//Âú×ãÉ¾³ý·¶Î§
+        if (L.data[i] >= s && L.data[i] <= t) {  //Âú×ãÉ¾³ý·¶Î§
             count++;
-        }else{
+        } else {
             L.data[i - count] = L.data[i];
         }
     }
@@ -142,7 +142,8 @@ int main() {
     // del_s_2_t(L, 7, 8);
     // printfList(L);
 
-    //5.
-    // del_s_2_t_2(L, 7, 9);
-    // printfList(L);
+    // 5.
+    //  del_s_2_t_2(L, 7, 9);
+    //  printfList(L);
+    printf("HelloWorld");
 }
