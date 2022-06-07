@@ -55,6 +55,7 @@ void del_x_1(SqList& L, ElemType x) {
     }
     L.length = k;
 }
+
 // 3.2 用k记录顺序表L中等于x的元素个数，边扫描边统计k，若不等于x则前移
 void del_x_2(SqList& L, ElemType x) {
     int k = 0, i = 0;  // k记录值等于x的个数
@@ -105,6 +106,26 @@ bool del_s_2_t_2(SqList& L, ElemType s, ElemType t) {
         }
     }
     L.length = L.length - count;
+    return true;
+}
+
+// 6. 从有序顺序表中删除所有其值重复的元素，使表中所有元素的值均不同
+//思路：有序顺序表，值相同的元素一定在连续位置上
+//类似直接插入排序的思想：
+//初始 把第一个元素看作是非重复的有序表，
+//之后依次判断后面的元素是否与前面的非重复有序表的最后一个元素相同，
+//若相同，则继续向后判断  若不同，则插入前面的非重复有序表的最后，直至判断到表尾为止
+//
+//
+bool deleteSame(SqList& L) {
+    if (L.length == 0)
+        return false;
+    int i, j;
+    for (i = 0, j; i < L.length; i++) {
+        if (L.data[i] != L.data[j])
+            L.data[++i] = L.data[j];
+    }
+    L.length = i + 1;
     return true;
 }
 
