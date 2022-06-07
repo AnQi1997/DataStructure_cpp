@@ -27,7 +27,7 @@ bool ListInsert(SqList& L, int i, ElemType e) {
         return false;
     if (L.length >= MaxSize)
         return false;
-    for (int j = L.length; j >= i; j++)
+    for (int j = L.length; j >= i; j--)
         L.data[j] = L.data[j - 1];
     L.data[i - 1] = e;
     L.length++;
@@ -102,7 +102,6 @@ int main() {
     if (ret) {
         PrintList(L);
         printf("插入成功！\n");
-        PrintList(L);
     } else {
         printf("插入失败！\n");
     }
