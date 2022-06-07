@@ -127,6 +127,31 @@ bool deleteSame(SqList& L) {
     return true;
 }
 
+// 7. 将两个有序顺序表合并为一个新的有序顺序表，并由函数返回结果顺序表
+//顺序取下两个顺序表表头较小的结点存入新的顺序表。
+// 然后，看哪个表还有剩余，将剩下的部分加到新的顺序表后面
+bool mergeList(SqList& A, SqList& B, SqList& C) {
+    if (A.length + B.length > MaxSize) {
+        return false;
+    }
+    int i = 0, j = 0, k = 0;
+    while (i < A.length && j < B.length) {
+        if (A.data[i] <= B.data[j]) {
+            C.data[k++] = A.data[i++];
+        } else {
+            C.data[k++] = B.data[j++];
+        }
+    }
+    while (i < A.length) {  // A还没比完
+        C.data[k++] = A.data[i++];
+    }
+    while (j < B.length) {
+        C.data[k++] = B.data[j++];
+    }
+    C.length = k;
+    return true;
+}
+
 void printfList(SqList& L) {
     for (int i = 0; i < L.length; i++) {
         printf("%3d", L.data[i]);
@@ -140,9 +165,7 @@ int main() {
     // L.data[1] = 7;
     // L.data[2] = 8;
     // L.length = 3;
-    L = {1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
-    L.length = 11;
-    printfList(L);
+    
 
     // 1.删除
     //  bool ret = deleteMin(L);
@@ -168,7 +191,23 @@ int main() {
     //  printfList(L);
 
     // 6.
-    printf("-----------\n");
-    deleteSame(L);
-    printfList(L);
+    // L = {1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+    // L.length = 11;
+    // printfList(L);
+    // printf("-----------\n");
+    // deleteSame(L);
+    // printfList(L);
+
+    // 7.
+    SqList A = {1, 3, 5};
+    A.length = 3;
+    SqList B = {2, 4, 6, 8, 10};
+    B.length = 5;
+    SqList C;
+    C.length = 8;
+    mergeList(A, B, C);
+    printfList(C);
+
+
+    //TODO
 }
