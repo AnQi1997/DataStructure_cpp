@@ -120,8 +120,10 @@ bool deleteSame(SqList& L) {
         return false;
     int i, j;
     for (i = 0, j = 1; i < L.length; j++) {
-        if (L.data[i] != L.data[j])  //相邻的不相等
-            L.data[++i] = L.data[j];
+        if (L.data[i] != L.data[j])   //相邻的不相等
+            L.data[++i] = L.data[j];  //如果不同，插入前面的有序表
+        // i = i + 1；
+        // L.data[i] = L.data[j];
     }
     L.length = i + 1;
     return true;
@@ -165,7 +167,6 @@ int main() {
     // L.data[1] = 7;
     // L.data[2] = 8;
     // L.length = 3;
-    
 
     // 1.删除
     //  bool ret = deleteMin(L);
@@ -208,6 +209,5 @@ int main() {
     mergeList(A, B, C);
     printfList(C);
 
-
-    //TODO
+    // TODO
 }
