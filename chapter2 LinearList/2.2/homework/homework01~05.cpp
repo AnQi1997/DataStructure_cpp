@@ -115,14 +115,12 @@ bool del_s_2_t_2(SqList& L, ElemType s, ElemType t) {
 //初始 把第一个元素看作是非重复的有序表，
 //之后依次判断后面的元素是否与前面的非重复有序表的最后一个元素相同，
 //若相同，则继续向后判断  若不同，则插入前面的非重复有序表的最后，直至判断到表尾为止
-//
-//
 bool deleteSame(SqList& L) {
     if (L.length == 0)
         return false;
     int i, j;
-    for (i = 0, j; i < L.length; i++) {
-        if (L.data[i] != L.data[j])
+    for (i = 0, j = 1; i < L.length; j++) {
+        if (L.data[i] != L.data[j])  //相邻的不相等
             L.data[++i] = L.data[j];
     }
     L.length = i + 1;
@@ -138,10 +136,12 @@ void printfList(SqList& L) {
 
 int main() {
     SqList L;
-    L.data[0] = 6;
-    L.data[1] = 7;
-    L.data[2] = 8;
-    L.length = 3;
+    // L.data[0] = 6;
+    // L.data[1] = 7;
+    // L.data[2] = 8;
+    // L.length = 3;
+    L = {1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+    L.length = 11;
     printfList(L);
 
     // 1.删除
@@ -166,5 +166,9 @@ int main() {
     // 5.
     //  del_s_2_t_2(L, 7, 9);
     //  printfList(L);
-    printf("HelloWorld");
+
+    // 6.
+    printf("-----------\n");
+    deleteSame(L);
+    printfList(L);
 }
