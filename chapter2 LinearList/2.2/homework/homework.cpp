@@ -15,10 +15,8 @@ typedef struct {
 bool deleteMin(SqList& L) {
     if (L.length == 0)
         return false;
-
     ElemType value = L.data[0];
     int pos = 0;
-
     for (int i = 0; i < L.length; i++) {
         if (L.data[i] < value) {
             value = L.data[i];
@@ -163,14 +161,15 @@ void printfList(SqList& L) {
 
 int main() {
     SqList L;
-    // L.data[0] = 6;
-    // L.data[1] = 7;
-    // L.data[2] = 8;
-    // L.length = 3;
+    L.data[0] = 6;
+    L.data[1] = 7;
+    L.data[2] = 8;
+    L.length = 3;
+    printfList(L);
 
     // 1.É¾³ý
-    //  bool ret = deleteMin(L);
-    //  printfList(L);
+    bool ret = deleteMin(L);
+    printfList(L);
 
     // 2.ÄæÖÃ
     //  ReverseList(L);
@@ -200,14 +199,14 @@ int main() {
     // printfList(L);
 
     // 7.
-    SqList A = {1, 3, 5};
-    A.length = 3;
-    SqList B = {2, 4, 6, 8, 10};
-    B.length = 5;
-    SqList C;
-    C.length = 8;
-    mergeList(A, B, C);
-    printfList(C);
+    // SqList A = {1, 3, 5};
+    // A.length = 3;
+    // SqList B = {2, 4, 6, 8, 10};
+    // B.length = 5;
+    // SqList C;
+    // C.length = 8;
+    // mergeList(A, B, C);
+    // printfList(C);
 
     // TODO
 }
