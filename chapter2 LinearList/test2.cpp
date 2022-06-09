@@ -107,7 +107,7 @@ bool del_s_t_2(SqList& L, ElemType s, ElemType t) {
     if (s >= t || L.length == 0)
         return false;
     int count = 0;
-    for (int i = 0; i < L.data; i++) {
+    for (int i = 0; i < L.length; i++) {
         if (L.data[i] >= s && L.data[i] <= t) {
             //该范围要删除
             count++;
@@ -117,6 +117,33 @@ bool del_s_t_2(SqList& L, ElemType s, ElemType t) {
         }
     }
     L.length = L.length - count;
+    return true;
+}
+
+//习题1.6
+// bool deleteSame(SqList& L) {
+//     if (L.length == 0)
+//         return false;
+//     int i, j;
+//     for (i = 0, j = 1; i < L.length; j++) {
+//         if (L.data[i] != L.data[j]) {
+//             L.data[++i] = L.data[j];
+//         }
+//     }
+//     //表长等于末尾下标加一
+//     L.length = i + 1;
+//     return true;
+// }
+bool deleteSame(SqList& L) {
+    if (L.length == 0)
+        return false;
+    int i, j;
+    for (i = 0, j = 1; i < L.length; j++) {
+        if (L.data[i] != L.data[j]) {
+            L.data[++i] = L.data[j];
+        }
+    }
+    L.length = i + 1;
     return true;
 }
 
@@ -227,6 +254,26 @@ int main() {
     // printList(LA);
 
     //习题 1.4
-    del_s_t_1(LA, 2, 10);
-    printList(LA);
+    // del_s_t_1(LA, 2, 10);
+    // printList(LA);
+
+    //习题 1.5
+    SqList LB = {1, 2, 6, 10, 6, 12};
+    LB.length = 6;
+    printList(LB);
+    del_s_t_2(LB, 2, 6);
+    printList(LB);
+
+    //习题1.6
+    // deleteSame(LA);
+    // printList(LA);
+
+    // SqList L = {1, 2, 2, 2, 2, 3, 3, 3, 4, 4, 5};
+    // L.length = 11;
+    // printList(L);
+    // deleteSame(L);
+    // printList(L);
+    // for (int i = 0; i < L.length; i++) {
+    //     printf("%4d", L.data[7]);
+    // }
 }
