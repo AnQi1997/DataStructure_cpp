@@ -79,20 +79,45 @@ void delete_x_2(SqList& L, ElemType x) {
 }
 
 //习题 1.4 要求:s<t
-void del_s_t_1(SqList& L, ElemType s, ElemType t) {
+bool del_s_t_1(SqList& L, ElemType s, ElemType t) {
+    int i, j;
     if (s >= t || L.length == 0)
         return false;
     //有序顺序表
     //找到第一个大于s的数
-    for (int i = 0; i < L.length && L.data[i] < s; i++)
+    for (i = 0; i < L.length && L.data[i] < s; i++)
         ;
     // TODO i最大值是L.length 为啥要写 i >= L.length
     if (i >= L.length)
         return false;
     //找到第一个大于t的数
-    for (int j = i; j < L.length && L.data[j] < t; j++)
+    for (j = i; j < L.length && L.data[j] <= t; j++)
         ;
-    for(;)
+    //从第一个大于t的元素开始 前移元素 至 i
+    //也就是从前面得到的j前移至i
+    for (; j < L.length; i++, j++) {
+        L.data[i] = L.data[j];
+    }
+    L.length = i;
+    return true;
+}
+
+//习题1.5
+bool del_s_t_2(SqList& L, ElemType s, ElemType t) {
+    if (s >= t || L.length == 0)
+        return false;
+    int count = 0;
+    for (int i = 0; i < L.data; i++) {
+        if (L.data[i] >= s && L.data[i] <= t) {
+            //该范围要删除
+            count++;
+        } else {
+            //不在删除范围,则保留并前移
+            L.data[i - count] = L.data[i];
+        }
+    }
+    L.length = L.length - count;
+    return true;
 }
 
 //插入
@@ -198,6 +223,10 @@ int main() {
     // printList(LA);
 
     //习题1.3.2
-    delete_x_2(LA, 6);
+    // delete_x_2(LA, 6);
+    // printList(LA);
+
+    //习题 1.4
+    del_s_t_1(LA, 2, 10);
     printList(LA);
 }
