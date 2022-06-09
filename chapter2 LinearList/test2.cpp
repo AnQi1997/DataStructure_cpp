@@ -147,6 +147,30 @@ bool deleteSame(SqList& L) {
     return true;
 }
 
+//习题1.7
+bool mergeList(SqList& A, SqList& B, SqList& C) {
+    if (A.length + B.length > MaxSize)
+        return false;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (i < A.length && j < B.length) {
+        if(A.data[i] < B.data[j]){
+            C.data[k++] = A.data[i++];
+        }else{
+            C.data[k++] = B.data[j++];
+        }
+    }
+    while(i < A.length){
+        C.data[k++] = A.data[i++];
+    }
+    while(j < B.length){
+        C.data[k++] = B.data[j++];
+    }
+    C.length = k;
+    return true;
+}
+
 //插入
 /**
  * @brief 在顺序表第i个位置上插入元素
@@ -219,9 +243,9 @@ void printList(SqList L) {
 }
 
 int main() {
-    SqList LA = {1, 2, 6, 6, 10, 12};
-    LA.length = 6;
-    printList(LA);
+    // SqList LA = {1, 2, 6, 6, 10, 12};
+    // LA.length = 6;
+    // printList(LA);
 
     // ListInsert(LA, 6, 100);
     // printList(LA);
@@ -258,11 +282,11 @@ int main() {
     // printList(LA);
 
     //习题 1.5
-    SqList LB = {1, 2, 6, 10, 6, 12};
-    LB.length = 6;
-    printList(LB);
-    del_s_t_2(LB, 2, 6);
-    printList(LB);
+    // SqList LB = {1, 2, 6, 10, 6, 12};
+    // LB.length = 6;
+    // printList(LB);
+    // del_s_t_2(LB, 2, 6);
+    // printList(LB);
 
     //习题1.6
     // deleteSame(LA);
@@ -276,4 +300,13 @@ int main() {
     // for (int i = 0; i < L.length; i++) {
     //     printf("%4d", L.data[7]);
     // }
+
+    //习题1.7
+    // SqList A = {1, 3, 5};
+    // A.length = 3;
+    // SqList B = {2, 4, 6, 8, 10};
+    // B.length = 5;
+    // SqList C;
+    // mergeList(A,B,C);
+    // printList(C);
 }
