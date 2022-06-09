@@ -92,7 +92,7 @@ void del_s_t_1(SqList& L, ElemType s, ElemType t) {
     //找到第一个大于t的数
     for (int j = i; j < L.length && L.data[j] < t; j++)
         ;
-    
+    for(;)
 }
 
 //插入
