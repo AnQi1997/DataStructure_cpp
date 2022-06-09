@@ -1,5 +1,5 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 // TODO
 //  8.已知在一维数组A[m+n]中依次存放两个线性表(a1, a2, a3, ... , am)和(b1, b2, b3, ... , bn).
 //   试编写一个函数,将数组中两个顺序表的位置互换,
@@ -9,7 +9,40 @@ void Reverse(DataType A[], int left, int right, int arraySize) {
     //判断范围合法
     if (left >= right || right >= arraySize)
         return;
+    //中间位置
     int mid = (left + right) / 2;
+
+    // 1 3 5
+    // 0 1 2
+    // left = 0 right = 2
+    // mid = (0 + 2) / 2 = 1
+    // mid - left = 1 - 0 = 1
+
+    // i = 0:
+    // temp = A[0 + 0] 
+    // A[0 + 0] = A[2 - 0] 
+    // A[2 - 0] = temp
+    // A[0] 与 A[2]互换
+
+    // i = 1;
+    // temp = A[0 + 1];
+    // A[0 + 1] = A[2 - 1];
+    // A[2 - 1] = A[0 + 1];
+    // A[1]不动
+// ---------------------------------------------------------
+    // 下标:3 4 5 6 7
+    // 元素:2 4 6 8 10
+    
+    // left = 3 
+    // right = 7
+    // mid = (3 + 7) / 2 = 5;
+    // mid - left = 5 - 3 = 2;
+
+    // i = 0;
+    // temp = A[3 + 0]
+    // A[3 + 0] = A[7 - 0]
+    // A[7 - 0] = A[3 - 0]
+
     for (int i = 0; i <= mid - left; i++) {
         DataType temp = A[left + i];
         A[left + i] = A[right - i];
