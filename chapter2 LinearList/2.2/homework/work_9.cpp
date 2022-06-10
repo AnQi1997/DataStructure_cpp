@@ -10,7 +10,13 @@
 //要求最短时间查找表中数值为x的元素,应该使用折半查找法
 
 typedef int ElemType;
-
+/**
+ * @brief 
+ * 
+ * @param A 数组
+ * @param x 要查找的值
+ * @param n 数组长度
+ */
 void SearchExchangeInsert(ElemType A[], ElemType x, int n) {
     // int n = sizeof(A) / sizeof(A[0]);  //数组长度
     int low = 0, high = n - 1, mid;
@@ -33,6 +39,7 @@ void SearchExchangeInsert(ElemType A[], ElemType x, int n) {
         A[mid + 1] = temp;
     }
     //没找到值为x的元素,插入表中,使表递增有序
+    //下标high之后全部大于x
     if (low > high) {
         int i;
         for (i = n - 1; i > high; i--)
