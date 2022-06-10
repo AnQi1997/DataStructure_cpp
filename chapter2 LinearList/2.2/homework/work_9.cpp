@@ -1,0 +1,48 @@
+#include <stdio.h>
+#include <stdlib.h>
+//习题1.9
+//线性表(a1, a2, ... , an)中的元素递增有序且按顺序存储于计算机内.
+//要求设计一个算法,完成用最少时间在表中查找数值为x的元素,
+//若找到,则将其与后继元素位置相交换
+//若找不到,则将其插入表中并使表中元素增递增有序
+
+//算法思想:顺序存储的线性表递增有序,可顺序查找,也可折半查找
+//要求最短时间查找表中数值为x的元素,应该使用折半查找法
+
+typedef int ElemType;
+
+void SearchExchangeInsert(ElemType A[], ElemType x) {
+    int n = sizeof(A) / 4;  //数组长度
+    int low = 0, high = n - 1, mid;
+    //折半查找
+    while (low < high) {
+        mid = (low + high) / 2;
+        if (A[mid] == x)
+            break;
+        else if (A[mid] < x)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    //找到值为x的元素,将其与后继元素交换
+    if (A[mid] == x && mid != n - 1) {
+        ElemType temp = A[mid];
+        A[mid] = A[mid + 1];
+        A[mid + 1] = temp;
+    }
+
+    if (low < high) {
+        int i;
+        for (i = n - 1; i > high; i--)
+            A[i + 1] = A[i];
+        A[i + 1] = x;
+    }
+}
+
+int main() {
+    ElemType A[] = {1, 2, 3, 4, 5};
+    printf("%d", sizeof(A) / 4);
+
+
+    
+}
