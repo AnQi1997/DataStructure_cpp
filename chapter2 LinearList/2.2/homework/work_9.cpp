@@ -11,8 +11,8 @@
 
 typedef int ElemType;
 
-void SearchExchangeInsert(ElemType A[], ElemType x) {
-    int n = sizeof(A) / sizeof(A[0]);  //数组长度
+void SearchExchangeInsert(ElemType A[], ElemType x, int n) {
+    // int n = sizeof(A) / sizeof(A[0]);  //数组长度
     int low = 0, high = n - 1, mid;
 
     //折半查找
@@ -43,9 +43,9 @@ void SearchExchangeInsert(ElemType A[], ElemType x) {
 
 int main() {
     ElemType A[] = {1, 2, 3, 4, 5};
-    printf("%d", sizeof(A) / sizeof(A[0]));
+    int n = sizeof(A) / sizeof(A[0]);//数组长度
 
-    SearchExchangeInsert(A, 4);
+    SearchExchangeInsert(A, 3, n);
     for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
         printf("%4d", A[i]);
     }
