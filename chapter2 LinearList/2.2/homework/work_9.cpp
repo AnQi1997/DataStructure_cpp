@@ -12,8 +12,9 @@
 typedef int ElemType;
 
 void SearchExchangeInsert(ElemType A[], ElemType x) {
-    int n = sizeof(A) / 4;  //数组长度
+    int n = sizeof(A) / sizeof(A[0]);  //数组长度
     int low = 0, high = n - 1, mid;
+
     //折半查找
     while (low < high) {
         mid = (low + high) / 2;
@@ -24,14 +25,15 @@ void SearchExchangeInsert(ElemType A[], ElemType x) {
         else
             high = mid - 1;
     }
+
     //找到值为x的元素,将其与后继元素交换
     if (A[mid] == x && mid != n - 1) {
         ElemType temp = A[mid];
         A[mid] = A[mid + 1];
         A[mid + 1] = temp;
     }
-
-    if (low < high) {
+    //没找到值为x的元素,插入表中,使表递增有序
+    if (low > high) {
         int i;
         for (i = n - 1; i > high; i--)
             A[i + 1] = A[i];
@@ -41,8 +43,10 @@ void SearchExchangeInsert(ElemType A[], ElemType x) {
 
 int main() {
     ElemType A[] = {1, 2, 3, 4, 5};
-    printf("%d", sizeof(A) / 4);
+    printf("%d", sizeof(A) / sizeof(A[0]));
 
-
-    
+    SearchExchangeInsert(A, 4);
+    for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
+        printf("%4d", A[i]);
+    }
 }
