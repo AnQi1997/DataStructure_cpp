@@ -64,9 +64,9 @@ void Exchange(DataType A[], int m, int n, int arraySize) {
     //数组A[m+n]中,
     // 从0到m-1存放顺序表(a1, a2, a3, ... , am),
     //从m到m+n-1存放顺序表(b1, b2, b3, ... , bn)
-    Reverse(A, 0, m + n - 1, arraySize);  //逆置整个表前n个是bn,...,b2,b1 后面是:am,...,a2,a1
-    Reverse(A, 0, n - 1, arraySize);      //逆转 逆序的bn,...,b2,b1
-    Reverse(A, n, m + n - 1, arraySize);  //逆转a m,...,a2,a1
+    Reverse(A, 0, m + n - 1, arraySize);  //逆置整个表：前n个是bn,...,b2,b1 后面是:am,...,a2,a1
+    Reverse(A, 0, n - 1, arraySize);      //逆转 bn,...,b2,b1, 变成b1, b2, ... , bn
+    Reverse(A, n, m + n - 1, arraySize);  //逆转 am,...,a2,a1, 变成a1, a2, ... , am
 }
 
 int main() {
