@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+//习题1.10
 //设将n（n>1）个整数存放到一维数组R中。设计一个在时间和空间两方面都尽可能高效的的算法。
 // 将R保存的序列循环左移p个位置（0<p<n）,
 // 即R中的数据由
@@ -55,14 +56,16 @@ int main() {
     int R[] = {1, 2, 3, 4, 5, 6, 7, 8};
     int n = sizeof(R) / sizeof(R[0]);
     for (int i = 0; i < n; i++) {
-        printf("%d", R[i]);
+        printf("%4d", R[i]);
     }
     printf("\n");
     Converse(R, n, 3);
     for (int i = 0; i < n; i++) {
-        printf("%d", R[i]);
+        printf("%4d", R[i]);
     }
 }
+
+// 3)
 
 //时间复杂度分析：
 // Reverse(R, 0, p - 1); O(p/2)
