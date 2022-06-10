@@ -56,7 +56,7 @@ int main() {
     ElemType A[] = {1, 2, 3, 4, 5};
     int n = sizeof(A) / sizeof(A[0]);  //数组长度
 
-    SearchExchangeInsert(A, 6, n);
+    SearchExchangeInsert(A, 6, n);  // TODO
     for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
         printf("%4d", A[i]);
     }

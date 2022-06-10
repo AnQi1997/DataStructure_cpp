@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-//TODO
+// TODO
 void search_X(int A[], int x, int n) {
     int left = 0;
     int right = n - 1;
@@ -44,7 +44,7 @@ int main() {
     }
     printf("\n");
 
-    search_X(A, 3, n);
+    search_X(A, 3, n);  // TODO
 
     for (int i = 0; i < 7; i++) {
         printf("%4d", A[i]);
