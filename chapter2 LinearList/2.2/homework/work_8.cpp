@@ -1,11 +1,20 @@
 #include <stdio.h>
 #include <stdlib.h>
-//习题1.8 已知在一维数组A[m+n]中依次存放两个线性表(a1, a2, a3, ... , am)和(b1, b2, b3, ... , bn).
+//习题1.8 已知在一维数组A[m+n]中依次存放
+//两个线性表(a1, a2, a3, ... , am)和(b1, b2, b3, ... , bn).
 //试编写一个函数,将数组中两个顺序表的位置互换,
 //即将(b1, b2, b3, ... , bn)放在(a1, a2, a3, ... , am)前面
 
 typedef int DataType;
 
+/**
+ * @brief 
+ * 
+ * @param A 
+ * @param left 
+ * @param right 
+ * @param arraySize 元素个数 数组长度
+ */
 void Reverse(DataType A[], int left, int right, int arraySize) {
     //判断范围合法
     if (left >= right || right >= arraySize)
@@ -13,6 +22,11 @@ void Reverse(DataType A[], int left, int right, int arraySize) {
     //中间位置
     int mid = (left + right) / 2;
 
+    for (int i = 0; i <= mid - left; i++) {//TODO
+        DataType temp = A[left + i];
+        A[left + i] = A[right - i];
+        A[right - i] = temp;
+    }
     // 1 3 5
     // 0 1 2
     // left = 0 right = 2
@@ -43,12 +57,6 @@ void Reverse(DataType A[], int left, int right, int arraySize) {
     // temp = A[3 + 0]
     // A[3 + 0] = A[7 - 0]
     // A[7 - 0] = A[3 - 0]
-
-    for (int i = 0; i <= mid - left; i++) {
-        DataType temp = A[left + i];
-        A[left + i] = A[right - i];
-        A[right - i] = temp;
-    }
 }
 
 /**
