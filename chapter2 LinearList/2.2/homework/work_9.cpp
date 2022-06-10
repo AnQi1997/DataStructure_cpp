@@ -11,8 +11,8 @@
 
 typedef int ElemType;
 /**
- * @brief 
- * 
+ * @brief
+ *
  * @param A 数组
  * @param x 要查找的值
  * @param n 数组长度
@@ -39,18 +39,21 @@ void SearchExchangeInsert(ElemType A[], ElemType x, int n) {
         A[mid + 1] = temp;
     }
     //没找到值为x的元素,插入表中,使表递增有序
-    //下标high之后全部大于x
+    //下标high之后全部大于x,查找的值大于high（也就是mid）
     if (low > high) {
         int i;
+        // i取值范围：n-1 ~ high+1
         for (i = n - 1; i > high; i--)
+            //元素后移
             A[i + 1] = A[i];
+        //插入待插入位置
         A[i + 1] = x;
     }
 }
 
 int main() {
     ElemType A[] = {1, 2, 3, 4, 5};
-    int n = sizeof(A) / sizeof(A[0]);//数组长度
+    int n = sizeof(A) / sizeof(A[0]);  //数组长度
 
     SearchExchangeInsert(A, 3, n);
     for (int i = 0; i < sizeof(A) / sizeof(A[0]); i++) {
