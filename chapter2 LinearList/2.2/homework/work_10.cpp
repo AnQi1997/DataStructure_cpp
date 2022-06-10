@@ -31,8 +31,6 @@
  */
 void Reverse(int R[], int from, int to) {
     for (int i = 0; i < (to - from + 1) / 2; i++) {
-        // from + i £º
-        // to - i £º
         int temp = R[from + i];
         R[from + i] = R[to - i];
         R[to - i] = temp;
@@ -55,10 +53,17 @@ void Converse(int R[], int n, int p) {
 int main() {
     int R[] = {1, 2, 3, 4, 5, 6, 7, 8};
     int n = sizeof(R) / sizeof(R[0]);
+    // printf("%d", n);
     for (int i = 0; i < n; i++) {
         printf("%4d", R[i]);
     }
     printf("\n");
+
+    // 1, 2, 3, 4, 5, 6, 7, 8
+    // Ñ­»·×óÒÆp¸öÎ»ÖÃ p = 3
+    // 0 - 2  3 - 7  0 - 7
+    //3, 2, 1, 8, 7, 6, 5, 4
+    //4, 5, 6, 7, 8, 1, 2, 3
     Converse(R, n, 3);
     for (int i = 0; i < n; i++) {
         printf("%4d", R[i]);
