@@ -11,8 +11,8 @@ typedef int DataType;
  * @brief 
  * 
  * @param A 
- * @param left 
- * @param right 
+ * @param left 开始的左端
+ * @param right 结束的右端
  * @param arraySize 元素个数 数组长度
  */
 void Reverse(DataType A[], int left, int right, int arraySize) {

@@ -152,24 +152,7 @@ bool mergeList(SqList& A, SqList& B, SqList& C) {
     return true;
 }
 
-// 8.
-typedef int DataType;
 
-void reverse(DataType A[], int left, int right, int arraySize) {
-    if (left >= right || right >= arraySize)
-        return;
-    for (int i = 0; i < (right - left) / 2; i++) {
-        DataType temp = A[left + i];
-        A[left + i] = A[right - i];
-        A[right - i] = temp;
-    }
-}
-
-void converse(DataType A[], int m, int n, int arraySize) {
-    reverse(A, 0, m + n - 1, arraySize);
-    reverse(A, 0, m - 1, arraySize);
-    reverse(A, m, m + n - 1, arraySize);
-}
 
 void printfList(SqList L) {
     for (int i = 0; i < L.length; i++) {
