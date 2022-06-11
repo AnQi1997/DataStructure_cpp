@@ -152,25 +152,26 @@ bool mergeList(SqList& A, SqList& B, SqList& C) {
     return true;
 }
 
-//TODO
-// 8.已知在一维数组A[m+n]中依次存放两个线性表(a1, a2, a3, ... , am)和(b1, b2, b3, ... , bm).
-//  试编写一个函数,将数组中两个顺序表的位置互换,
-//即将(b1, b2, b3, ... , bm)放在(a1, a2, a3, ... , am)前面
+// 8.
 typedef int DataType;
-void Reverse(DataType A[], int left, int right, int arraySize) {
+
+void reverse(DataType A[], int left, int right, int arraySize) {
     if (left >= right || right >= arraySize)
         return;
-    int mid = (left + right) / 2;
-    for (int i = 0; i <= mid - left; i++) {
+    for (int i = 0; i < (right - left) / 2; i++) {
         DataType temp = A[left + i];
         A[left + i] = A[right - i];
         A[right - i] = temp;
     }
 }
 
+void converse(DataType A[], int m, int n, int arraySize) {
+    reverse(A, 0, m + n - 1, arraySize);
+    reverse(A, 0, m - 1, arraySize);
+    reverse(A, m, m + n - 1, arraySize);
+}
 
-
-void printfList(SqList& L) {
+void printfList(SqList L) {
     for (int i = 0; i < L.length; i++) {
         printf("%3d", L.data[i]);
     }
@@ -225,6 +226,4 @@ int main() {
     // C.length = 8;
     // mergeList(A, B, C);
     // printfList(C);
-
-    // TODO
 }

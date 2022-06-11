@@ -90,10 +90,62 @@ bool del_s_t_1(SqList& L, ElemType s, ElemType t) {
 bool del_s_t_2(SqList& L, ElemType s, ElemType t) {
     if (s >= t || L.length == 0)
         return false;
+    int k;
     for (int i = 0; i < L.length; i++) {
-        if (L.data[i] >= s && L.data[i] <= t)
-            L.data[i] = L.data[i + 1];
+        if (L.data[i] >= s && L.data[i] <= t) {
+            k++;
+        } else {
+            //不在删除范围 当前下标减去删除的个数是新位置
+            L.data[i - k] = L.data[i];
+        }
     }
+    L.length = L.length - k;
+    return true;
+}
+
+// 6.
+bool delSame(SqList& L) {
+    if (L.length == 0)
+        return false;
+    int i, j;
+    for (i = 0, j = 1; i < L.length; j++) {  // && j < L.length
+        if (L.data[i] != L.data[j]) {
+            L.data[++i] = L.data[j];
+        }
+    }
+    L.length = i + 1;
+    return true;
+}
+
+// 7.
+bool mergeList(SqList& A, SqList& B, SqList& C) {
+    if (A.length + B.length > MaxSize)
+        return false;
+    int i = 0, j = 0, k = 0;
+    while (i < A.length && j < B.length) {
+        if (A.data[i] > B.data[j]) {
+            C.data[k++] = B.data[j++];
+        } else {
+            C.data[k++] = A.data[i++];
+        }
+    }
+    while (i < A.length) {
+        C.data[k++] = A.data[i++];
+    }
+    while (j < B.length) {
+        C.data[k++] = B.data[j++];
+    }
+    C.length = k;  // ！= k + 1
+    // k不再加1是因为A或B最后一个元素赋值给C后，k的值自增了1
+    //此时，k的值就是表长
+    //因为k是使用后自增
+    return true;
+}
+
+// 8.
+void reverse(int A[], int left, int right, int arraySize) {
+    if (left >= right || right >= arraySize)
+        return;
 }
 
 void printfList(SqList L) {
@@ -104,8 +156,8 @@ void printfList(SqList L) {
 }
 
 int main() {
-    SqList L = {1, 2, 3, 3, 5};
-    L.length = 5;
+    // SqList L = {1, 2, 3, 3, 5};
+    // L.length = 5;
 
     // 1
     // printfList(L);
@@ -132,4 +184,30 @@ int main() {
     // printfList(L);
 
     // 5.
+    // printfList(L);
+    // del_s_t_2(L, 2, 3);
+    // printfList(L);
+
+    // 6.
+    // printfList(L);
+    // delSame(L);
+    // printfList(L);
+
+    // 7.
+    //     SqList A = {1, 2, 3};
+    //     A.length = 3;
+    // // C[0] A[0]
+    // // C[1] A[1]
+    // // C[2] A[2]
+    // // C[3] B[0]
+    // // C[4] B[1]
+    // // C[5] B[2]
+    // // C[6] B[3]
+    //  k = 7
+    //     SqList B = {4, 5, 6, 8};
+    //     B.length = 4;
+    //     SqList C;
+    //     C.length = 0;
+    //     mergeList(A, B, C);
+    //     printfList(C);
 }
