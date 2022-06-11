@@ -70,8 +70,30 @@ void del_x_2(SqList& L, ElemType x) {
 bool del_s_t_1(SqList& L, ElemType s, ElemType t) {
     if (s >= t || L.length == 0)
         return false;
-    
+    //找到第一个大于s的元素
+    int i, j;
+    for (i = 0; i < L.length && L.data[i] < s; i++)
+        ;
+    //找到第一个大于t的元素
+    if (i >= L.length)
+        return false;
+    for (j = i; j < L.length && L.data[j] <= t; j++)
+        ;
+    for (; j < L.length; i++, j++) {
+        L.data[i] = L.data[j];
+    }
+    L.length = i;
     return true;
+}
+
+// 5.
+bool del_s_t_2(SqList& L, ElemType s, ElemType t) {
+    if (s >= t || L.length == 0)
+        return false;
+    for (int i = 0; i < L.length; i++) {
+        if (L.data[i] >= s && L.data[i] <= t)
+            L.data[i] = L.data[i + 1];
+    }
 }
 
 void printfList(SqList L) {
@@ -82,7 +104,7 @@ void printfList(SqList L) {
 }
 
 int main() {
-    SqList L = {1, -1, 3, 3, 5};
+    SqList L = {1, 2, 3, 3, 5};
     L.length = 5;
 
     // 1
@@ -103,4 +125,11 @@ int main() {
     // printfList(L);
     // del_x_2(L, 3);
     // printfList(L);
+
+    // 4.
+    // printfList(L);
+    // del_s_t_1(L, 2, 3);
+    // printfList(L);
+
+    // 5.
 }
