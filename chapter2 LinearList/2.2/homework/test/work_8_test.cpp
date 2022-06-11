@@ -13,6 +13,20 @@ void reverse(DataType A[], int left, int right, int arraySize) {
         A[left + i] = A[right - i];
         A[right - i] = temp;
     }
+
+    /**
+     * @brief 异曲同工 上面的更简洁
+     * 
+     */
+    // if (left >= right || right >= arraySize)
+    //     return;
+    // int mid = (left + right) / 2;
+    // for (int i = 0; i < mid - left; i++) {
+    //     //下标 - 下标 + 1才是个数  ÷2是
+    //     DataType temp = A[left + i];
+    //     A[left + i] = A[right - i];
+    //     A[right - i] = temp;
+    // }
 }
 
 void converse(DataType A[], int m, int n, int arraySize) {
