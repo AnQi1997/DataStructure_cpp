@@ -16,12 +16,12 @@ void search_x(SqList& L, ElemType x) {
 
     //二分查找
     while (low <= high) {
-        mid = (low + high) / 2;
+        mid = low + ((high - low) >> 1);
         if (L.data[mid] == x)
             break;
-        if (L.data[mid] < x)
+        else if (L.data[mid] < x)
             low = mid + 1;
-        else
+        else if (L.data[mid] > x)
             high = mid - 1;
     }
 
@@ -32,7 +32,6 @@ void search_x(SqList& L, ElemType x) {
         L.data[mid + 1] = temp;
     }
 
-    //没找到
     if (low > high) {
         int i;
         for (i = L.length - 1; i > high; i--) {
@@ -44,7 +43,7 @@ void search_x(SqList& L, ElemType x) {
 }
 
 int main() {
-    SqList L = {1, 2, 3, 4, 5, 7};
+    SqList L = {1, 2, 4, 5, 6, 7};
     L.length = 6;
 
     for (int i = 0; i < L.length; i++) {
@@ -52,7 +51,7 @@ int main() {
     }
     printf("\n");
 
-    search_x(L, 6);
+    search_x(L, 8);
 
     for (int i = 0; i < L.length; i++) {
         printf("%4d", L.data[i]);
