@@ -26,7 +26,7 @@ void search_x(SqList& L, ElemType x) {
     }
 
     //找到
-    if (low <= high && L.data[mid] == x && mid != L.length - 1) {
+    if (L.data[mid] == x && mid != L.length - 1) {
         ElemType temp = L.data[mid];
         L.data[mid] = L.data[mid + 1];
         L.data[mid + 1] = temp;
@@ -38,7 +38,8 @@ void search_x(SqList& L, ElemType x) {
         for (i = L.length - 1; i > high; i--) {
             L.data[i + 1] = L.data[i];
         }
-        L.data[high + 1] = x;
+        // for循环结束时，i = high  high后面的位置才是要插入的位置
+        L.data[i + 1] = x;
         L.length += 1;
     }
 }
@@ -52,7 +53,7 @@ int main() {
     }
     printf("\n");
 
-    search_x(L, 6);
+    search_x(L, 3);
 
     for (int i = 0; i < L.length; i++) {
         printf("%4d", L.data[i]);
