@@ -37,7 +37,6 @@ void reverseList(SqList& L) {
 }
 
 // 3
-// TODO
 // 3.1 用k记录等于x的个数 前移顶头，L.length - k就是表长
 void del_x_1(SqList& L, ElemType x) {
     int k;
@@ -53,7 +52,6 @@ void del_x_1(SqList& L, ElemType x) {
     L.length = L.length - k;
 }
 
-// TODO
 // 3.2 用k记录不等于x的个数 直接拿前边来
 void del_x_2(SqList& L, ElemType x) {
     int k = 0;

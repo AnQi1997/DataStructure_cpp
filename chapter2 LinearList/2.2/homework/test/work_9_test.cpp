@@ -44,7 +44,7 @@ int main() {
     }
     printf("\n");
 
-    search_X(A, 3, n);  // TODO
+    search_X(A, 13, n);  // TODO
 
     for (int i = 0; i < 7; i++) {
         printf("%4d", A[i]);
