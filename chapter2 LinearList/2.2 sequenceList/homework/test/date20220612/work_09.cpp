@@ -3,16 +3,16 @@
 
 void search_x(int A[], int x, int n) {
     int low = 0, high = n - 1;
-    int mid = (low + high) / 2;
+    int mid;
     //二分查找
     while (low < high) {
+        mid = (low + high) / 2;
         if (A[mid] == x)
             break;
-        else if (A[mid] < x) {  // x在mid左边
+        else if (A[mid] < x)  // x在mid左边
             low = mid + 1;
-        } else {
+        else
             high = mid - 1;
-        }
     }
 
     // low <= high
@@ -46,5 +46,4 @@ int main() {
     for (int i = 0; i < n; i++) {
         printf("%4d", A[i]);
     }
-    return 0;
 }
