@@ -7,6 +7,10 @@ typedef struct LNode {
     ElemType data;
     struct LNode* next;
 } LNode, *LinkList;
+// LNode 和 *LinkList 是不同名字的同一指针类型
+//命名不同是为了概念上更加明确
+//*LinkList类型的指针变量表示它是一个单链表
+// LNode类型的指针变量表示它是指向某一结点的指针
 
 void printList(LinkList L) {
     L = L->next;
@@ -19,13 +23,14 @@ void printList(LinkList L) {
 
 /**
  * @brief 头插法建立单链表
- *
+ *  该方法从一个空表开始，生成新结点，并将读取到的数据存放到新结点的数据域中
+ *  然后将新结点插入到当前链表的表头，即头节点之后
  */
 LinkList CreatList1(LinkList& L) {
-    LNode* s;
-    int x;
+    LNode* s;  //新结点
+    int x;     //新结点数据域
 
-    L = (LinkList)malloc(sizeof(LNode));
+    L = (LinkList)malloc(sizeof(LNode));  //链表头结点
     L->next = NULL;
 
     scanf("%d", &x);
