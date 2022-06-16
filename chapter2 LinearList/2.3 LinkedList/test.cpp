@@ -38,7 +38,7 @@ LinkList CreatList1(LinkList& L) {
         s = (LNode*)malloc(sizeof(LNode));
         s->data = x;
 
-        s->next = L->next;
+        s->next = L   456e->next;
         L->next = s;
 
         scanf("%d", &x);
