@@ -9,9 +9,9 @@ typedef struct LNode {
 } LNode, *LinkList;
 // LNode 和 *LinkList 是不同名字的同一指针类型
 //命名不同是为了概念上更加明确
-//*LinkList类型的指针变量表示它是一个单链表
-// LNode类型的指针变量表示它是指向某一结点的指针
-
+//*LinkList类型的指针变量表示它是一个单链表  结构体指针类型起别名
+// LNode类型的指针变量表示它是指向某一结点的指针  给结构体类型起别名
+//指针用箭头访问成员   访问结构体变量用点  别问，问就是规定，记住就这样用
 void printList(LinkList L) {
     L = L->next;
     while (L != NULL) {
@@ -38,12 +38,24 @@ LinkList CreatList1(LinkList& L) {
         s = (LNode*)malloc(sizeof(LNode));
         s->data = x;
 
-        s->next = L   456e->next;
+        s->next = L 456e- > next;
         L->next = s;
 
         scanf("%d", &x);
     }
     return L;
+}
+
+/**
+ * @brief 头插法
+ *
+ * @param L
+ * @return LinkList
+ */
+LinkList List_HeadInsert(LinkList& L) {
+    LNode* s;
+    int x;
+    s->data = x;
 }
 
 /**
