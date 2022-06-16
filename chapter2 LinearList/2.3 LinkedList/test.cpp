@@ -1,5 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
+// TODO 纯纯的抄！！！
 
 typedef int ElemType;
 
@@ -7,6 +15,7 @@ typedef struct LNode {
     ElemType data;
     struct LNode* next;
 } LNode, *LinkList;
+
 // LNode 和 *LinkList 是不同名字的同一指针类型
 //命名不同是为了概念上更加明确
 //*LinkList类型的指针变量表示它是一个单链表  结构体指针类型起别名
@@ -38,7 +47,7 @@ LinkList CreatList1(LinkList& L) {
         s = (LNode*)malloc(sizeof(LNode));
         s->data = x;
 
-        s->next = L 456e- > next;
+        s->next = L->next;
         L->next = s;
 
         scanf("%d", &x);
@@ -55,7 +64,18 @@ LinkList CreatList1(LinkList& L) {
 LinkList List_HeadInsert(LinkList& L) {
     LNode* s;
     int x;
-    s->data = x;
+    L = (LinkList)malloc(sizeof(LNode));
+    L->next = NULL;
+    scanf("%d", &x);
+    while (x != 9999) {
+        s = (LNode*)malloc(sizeof(LNode));
+        s->data = x;
+
+        s->next = L->next;
+        L->next = s;
+        scanf("%d", &x);
+    }
+    return L;
 }
 
 /**
@@ -80,19 +100,32 @@ LinkList CreatList2(LinkList& L) {
     return L;
 }
 
-/**
- * @brief Get the Elem object
- *
- * @param L
- * @param i
- * @return LNode*
- */
+LinkList List_RearInsert(LinkList& L) {
+    int x;
+    L = (LinkList)malloc(sizeof(LNode));
+    LNode *s, *r = L;
+    scanf("%d", &x);
+    while (x != 9999) {
+        s = (LNode*)malloc(sizeof(LNode));
+        s->data = x;
+        r->next = s;
+        r = s;
+        scanf("%d", &x);
+    }
+    r->next = NULL;
+    return L;
+}
+
+// 按序号查找
+// 从第一个结点出发，直到找到第i个结点为止，
+// 否则返回最后一个结点指针域NULL
 LNode* GetElem(LinkList L, int i) {
-    int j = 1;
-    LNode* p = L->next;
+    int j = 1;           //计数器
+    LNode* p = L->next;  //指向首节点
+
     if (i == 0)
         return L;
-    if (i < 1)
+    if (i < 0)
         return NULL;
     while (p && j < i) {
         p = p->next;
@@ -103,16 +136,46 @@ LNode* GetElem(LinkList L, int i) {
 
 /**
  * @brief 按值查找
- *
- * @param L
- * @param e
- * @return LNode*
+ * 从单链表第一个结点开始，
+ * 从前到后依次比较各结点数据域的值，
+ * 若等于给定值e，则返回该结点的指针
+ * 若整个单链表没有这样的结点，则返回NULL
  */
 LNode* LocateElem(LinkList L, ElemType e) {
     LNode* p = L->next;
     while (p && p->data != e)
         p = p->next;
     return p;
+}
+
+/**
+ * @brief 新结点插入第i个位置
+ * 将值为x的新结点插入到单链表第i个位置上，
+ * 先检查插入位置的合法性，
+ * 然后找到插入位置的前驱结点，即第i-1个结点，在其后插入新结点
+ */
+bool ListFrontInsert(LinkList L, int i, ElemType e) {
+    LinkList p = GetElem(L, i - 1);
+    if (p == NULL)
+        return false;
+    //此时找到插入位置
+
+    //为插入元素申请空间
+    LNode* s = (LNode*)malloc(sizeof(LNode));
+    s->data = e;
+
+    s->next = p->next;
+    p->next = s;
+    return true;
+}
+
+//删除第i个结点
+bool ListDelete(LinkList L, int i) {
+    LNode* p = GetElem(L, i - 1);
+    LNode* q = p->next;
+    p->next = q->next;
+    free(q);
+    return true;
 }
 
 int main() {
@@ -123,4 +186,28 @@ int main() {
 
     // CreatList2(L);
     // printList(L);
+
+    // List_HeadInsert(L);
+    // printList(L);
+
+    //按序号查找
+    // GetElem(L, 1);
+    // printf("%d", GetElem(L, 1)->data);
+
+    //按值查找
+    // LNode* p = LocateElem(L, 2);
+    // printf("%d", p->data);
+
+    List_RearInsert(L);
+    printList(L);
+
+    bool flag = ListFrontInsert(L, 2, 100);
+    if (flag) {
+        printList(L);
+    } else {
+        printf("插入失败！");
+    }
+
+    ListDelete(L, 1);
+    printList(L);
 }
