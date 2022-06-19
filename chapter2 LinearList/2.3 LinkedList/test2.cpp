@@ -149,12 +149,12 @@ int main() {
     List_HeadInsert(L);
     PrintList(L);
 
-    bool flag = ListFrontInsert(L, 2, 100);
-    if (flag) {
-        PrintList(L);
-    } else {
-        printf("≤Â»Î ß∞‹");
-    }
+    // bool flag = ListFrontInsert(L, 2, 100);
+    // if (flag) {
+    //     PrintList(L);
+    // } else {
+    //     printf("≤Â»Î ß∞‹");
+    // }
     //Œ≤≤Â∑®£∫À≥–Ú≤Â»Î ≤Â»ÎÀ≥–Úº¥«∞∫ÛÀ≥–Ú
     // List_TailInsert(L);
     // PrintList(L);
