@@ -141,10 +141,10 @@ int main() {
     // }
 
     //É¾³ýµÚi¸ö½áµã
-    bool flag2 = ListDelete(L, 2);
-    if (flag2) {
-        PrintList(L);
-    } else {
-        printf("É¾³ýÊ§°Ü£¡");
-    }
+    // bool flag2 = ListDelete(L, 2);
+    // if (flag2) {
+    //     PrintList(L);
+    // } else {
+    //     printf("É¾³ýÊ§°Ü£¡");
+    // }
 }
