@@ -17,7 +17,7 @@ void PrintList(DLinkList DL) {
     printf("\n");
 }
 
-//头插法建立单链表
+//头插法建立双向链表
 DLinkList DList_Head_Insert(DLinkList& DL) {
     DL = (DLinkList)malloc(sizeof(DNode));
     DL->next = NULL;
@@ -95,7 +95,7 @@ DLinkList DList_Tail_Insert(DLinkList& DL) {
 // }
 
 //按序号查找第i个结点
-DNode* GetElem(DLinkList& DL, int i) {
+DNode* GetElem(DLinkList DL, int i) {
     int j = 1;
     if (0 == i)  //返回头结点
                  // 0 == i 常量写在前面，保证编译的通
@@ -112,7 +112,7 @@ DNode* GetElem(DLinkList& DL, int i) {
 }
 
 //将值为e的新结点插入到第i个位置
-bool DList_Insert(DLinkList& DL, int i, ElemType e) {
+bool DList_Insert(DLinkList DL, int i, ElemType e) {
     //插入位置的前一个
     DNode* p = GetElem(DL, i - 1);
     if (p == NULL)
@@ -123,7 +123,7 @@ bool DList_Insert(DLinkList& DL, int i, ElemType e) {
     s->data = e;
 
     s->next = p->next;
-    s->next->prior = s;2
+    s->next->prior = s;
     s->prior = p;
     p->next = s;
 
@@ -131,7 +131,8 @@ bool DList_Insert(DLinkList& DL, int i, ElemType e) {
 }
 
 //删除第i个结点
-bool DList_Delete(DLinkList& DL, int i) {
+bool DList_Delete(DLinkList DL, int i) {
+    //DLinkList& DL不需要引用，因为不改变头部
     DNode* p = GetElem(DL, i - 1);
     if (p == NULL)
         return false;
