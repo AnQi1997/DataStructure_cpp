@@ -156,7 +156,9 @@ LNode* LocateElem(LinkList L, ElemType e) {
  */
 bool ListFrontInsert(LinkList L, int i, ElemType e) {
     LinkList p = GetElem(L, i - 1);
-    if (p == NULL)
+    if (NULL == p)  
+    //放的这个位置不存在 也就是插入位置在头结点之前的时候
+    //也就是插入位置不合法，i=0时，插入的位置是头结点，返回false
         return false;
     //此时找到插入位置
 
@@ -201,13 +203,13 @@ int main() {
     List_RearInsert(L);
     printList(L);
 
-    bool flag = ListFrontInsert(L, 2, 100);
+    bool flag = ListFrontInsert(L, 0, 100);
     if (flag) {
         printList(L);
     } else {
         printf("插入失败！");
     }
 
-    ListDelete(L, 1);
-    printList(L);
+    // ListDelete(L, 1);
+    // printList(L);
 }

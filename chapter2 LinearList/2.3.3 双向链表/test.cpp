@@ -115,14 +115,15 @@ bool DListInsert(DLinkList& DL, ElemType e, int i) {
 bool ListDelete(DLinkList& DL, int i) {
     //找到第i-1个结点
     DNode* p = GetElem(DL, i - 1);
-    if (p == NULL)  // TODO ？啥意思
+    if (NULL == p)  // 插入位置不存在，就是插入位置不合法
         return false;
 
     DNode* q = p->next;
 
-    if (q == NULL)
-        return false;  // TODO
-
+    if (NULL == q)     //删除位置不存在
+                       //具体什么情况呢？
+                       //删除的是最后一个结点
+        return false;  // 
     p->next = q->next;  //断链  prior还没断
 
     if (q->next != NULL)

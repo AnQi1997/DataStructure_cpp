@@ -45,13 +45,13 @@ DLinkList DList_Head_Insert(DLinkList& DL) {
     return DL;
 }
 
-//尾插法建立单链表//TODO
+//尾插法建立单链表
 DLinkList DList_Tail_Insert(DLinkList& DL) {
     DL = (DLinkList)malloc(sizeof(DNode));
-    // DL->next = NULL;//TODO
     DL->prior = NULL;
 
-    DNode *s, *r = DL;
+    DNode* r = DL;
+    DNode* s;
 
     ElemType x;
     scanf("%d", &x);
@@ -60,33 +60,48 @@ DLinkList DList_Tail_Insert(DLinkList& DL) {
         s = (DNode*)malloc(sizeof(DNode));
         s->data = x;
 
-        //TODO
         r->next = s;
         s->prior = r;
         r = s;
-
-        // s->next = r->next;
-        // if (DL->next) {
-        //     r->next->prior = s;
-        // }
-        // s->prior = r;
-        // r->next = s;
-        // r = s;
-
-        scanf("%d", &x);
     }
-    //NULL
     r->next = NULL;
     return DL;
 }
 
+// DLinkList DList_Tail_Insert(DLinkList& DL) {
+//     DL = (DLinkList)malloc(sizeof(DNode));
+//     // DL->next = NULL;
+//     //最后赋给NULL，因为是尾插，
+//     // 最后才能确定最后一个元素
+//     DL->prior = NULL;
+
+//     DNode *s, *r = DL;
+
+//     ElemType x;
+//     scanf("%d", &x);
+
+//     while (x != 9999) {
+//         s = (DNode*)malloc(sizeof(DNode));
+//         s->data = x;
+
+//         r->next = s;
+//         s->prior = r;
+//         r = s;
+
+//         scanf("%d", &x);
+//     }
+//     r->next = NULL;
+//     return DL;
+// }
+
 //按序号查找第i个结点
 DNode* GetElem(DLinkList& DL, int i) {
     int j = 1;
-    //TODO
-    if (i == 0)
+    if (0 == i)  //返回头结点
+                 // 0 == i 常量写在前面，保证编译的通
+        // 0 = i 时， 编译器会报错，保证编译的通
         return DL;
-    if (i < 1)
+    if (i < 1)  //负值，啥也妹有
         return NULL;
     DNode* p = DL->next;
     while (p && j < i) {
@@ -100,7 +115,6 @@ DNode* GetElem(DLinkList& DL, int i) {
 bool DList_Insert(DLinkList& DL, int i, ElemType e) {
     //插入位置的前一个
     DNode* p = GetElem(DL, i - 1);
-    //TODO
     if (p == NULL)
         return false;
 
@@ -109,7 +123,7 @@ bool DList_Insert(DLinkList& DL, int i, ElemType e) {
     s->data = e;
 
     s->next = p->next;
-    s->next->prior = s;
+    s->next->prior = s;2
     s->prior = p;
     p->next = s;
 
@@ -119,12 +133,11 @@ bool DList_Insert(DLinkList& DL, int i, ElemType e) {
 //删除第i个结点
 bool DList_Delete(DLinkList& DL, int i) {
     DNode* p = GetElem(DL, i - 1);
-    //TODO
     if (p == NULL)
         return false;
 
     DNode* q = p->next;
-    //TODO
+    
     if (q == NULL)
         return false;
 
@@ -139,16 +152,15 @@ bool DList_Delete(DLinkList& DL, int i) {
 int main() {
     DLinkList DL;
 
-    DList_Head_Insert(DL);
-    PrintList(DL);
+    // DList_Head_Insert(DL);
+    // PrintList(DL);
 
-    // TODO
-    //  DList_Tail_Insert(L);
-    //  PrintList(L);
+    DList_Tail_Insert(DL);
+    PrintList(DL);
 
     // DNode* p = GetElem(DL, 2);
     // printf("%d\n", p->data);
 
-    DList_Delete(DL, 2);
-    PrintList(DL);
+    // DList_Delete(DL, 2);
+    // PrintList(DL);
 }

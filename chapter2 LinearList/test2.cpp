@@ -87,8 +87,9 @@ bool del_s_t_1(SqList& L, ElemType s, ElemType t) {
     //找到第一个大于s的数
     for (i = 0; i < L.length && L.data[i] < s; i++)
         ;
-    // TODO i最大值是L.length 为啥要写 i >= L.length
-    if (i >= L.length)
+    // i最大值是L.length 为啥要写 i >= L.length
+    // > 用不到 写 = 也是可以的
+    if (i >= L.length)  // i == L.length
         return false;
     //找到第一个大于t的数
     for (j = i; j < L.length && L.data[j] <= t; j++)
@@ -155,16 +156,16 @@ bool mergeList(SqList& A, SqList& B, SqList& C) {
     int j = 0;
     int k = 0;
     while (i < A.length && j < B.length) {
-        if(A.data[i] < B.data[j]){
+        if (A.data[i] < B.data[j]) {
             C.data[k++] = A.data[i++];
-        }else{
+        } else {
             C.data[k++] = B.data[j++];
         }
     }
-    while(i < A.length){
+    while (i < A.length) {
         C.data[k++] = A.data[i++];
     }
-    while(j < B.length){
+    while (j < B.length) {
         C.data[k++] = B.data[j++];
     }
     C.length = k;

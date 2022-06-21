@@ -58,10 +58,12 @@ DLinkList Dlist_tail_insert(DLinkList& DL) {
 DNode* GetElem(DLinkList DL, int i) {
     int j = 1;
     DNode* p = DL->next;
+
     if (i == 0)
         return DL;
     if (i < 1)
         return NULL;
+        
     while (p && j < i) {
         p = p->next;
         j++;
