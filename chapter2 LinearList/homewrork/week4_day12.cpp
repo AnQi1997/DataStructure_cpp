@@ -2,7 +2,7 @@
  * @Author: AnQi1997 2361067080@qq.com
  * @Date: 2022-06-22 15:02:55
  * @LastEditors: AnQi1997 2361067080@qq.com
- * @LastEditTime: 2022-06-22 15:18:20
+ * @LastEditTime: 2022-06-22 15:34:13
  * @FilePath: \DataStructure_Cpp\chapter2 LinearList\homewrork\week4_day12.cpp
  * @Description:
  * 假如有n个台阶，一次只能上1个台阶或2个台阶，请问走到第n个台阶有几种走法？
@@ -19,13 +19,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int ClimbStairs(int n) {
-    if (1 == n)
-        return 1;
-    if (2 == n)
-        return 2;
-    return ClimbStairs(n - 1) + ClimbStairs(n - 2);
+int step(int n) {
+    if (1 == n || 2 == n)
+        return n;
+    return step(n - 1) + step(n - 2);
 }
 
 int main() {
+    int n;
+    scanf("%d", &n);
+
+    int num = step(n);
+    printf("%d", num);
 }
