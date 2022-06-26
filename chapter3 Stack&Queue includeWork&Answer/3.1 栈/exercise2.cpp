@@ -1,7 +1,7 @@
 /*
  * @Author: 2361067080@qq.com
- * @Date: 2022-06-26 08:50:14
- * @Description: 栈，使用数组实现 - 纯抄
+ * @Date: 2022-06-26 09:33:09
+ * @Description: 栈的数组实现，自己写
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -15,10 +15,12 @@ typedef struct {
     int top;
 } SqStack;
 
+//初始化栈
 void InitStack(SqStack& S) {
-    S.top = -1;
+    S.top = -1;  //代表栈空
 }
 
+//判断栈空
 bool StackEmpty(SqStack& S) {
     if (-1 == S.top)
         return true;
@@ -28,10 +30,10 @@ bool StackEmpty(SqStack& S) {
 
 //入栈
 bool Push(SqStack& S, ElemType x) {
-    if (S.top == MaxSize - 1) {
+    //栈满，停止进栈
+    if (MaxSize - 1 == S.top)
         return false;
-    }
-    //栈顶指针先加再赋值
+    //栈空，++S.top
     S.data[++S.top] = x;
     return true;
 }
@@ -44,7 +46,7 @@ bool Pop(SqStack& S, ElemType& x) {
     return true;
 }
 
-//读栈顶元素
+//读取栈顶元素
 bool GetTop(SqStack& S, ElemType& x) {
     if (-1 == S.top)
         return false;
@@ -52,34 +54,35 @@ bool GetTop(SqStack& S, ElemType& x) {
     return true;
 }
 
-int main() {
+main() {
     SqStack S;
-    bool flag;
     ElemType x;
+    bool flag;
 
     InitStack(S);
     flag = StackEmpty(S);
-    if(flag){
-        printf("栈空");
-    }else{
-        printf("栈不空");
+    if (flag) {
+        printf("栈空\n");
     }
 
-    Push(S,1);
-    Push(S,2);
-    Push(S,3);
-    Push(S,4);
-    Push(S,5);
+    Push(S, 1);
+    Push(S, 2);
+    Push(S, 3);
+    Push(S, 4);
+    Push(S, 5);
 
     flag = GetTop(S, x);
-    if(flag) {
-        printf("栈顶元素是%d\n", x);
+    if (flag) {
+        printf("栈顶元素是：%d\n", x);
     }
 
-    //出栈
     flag = Pop(S, x);
     if(flag){
-        printf("出栈的栈顶元素%d", x);
+        printf("出栈元素是%d\n", x);
     }
 
+    flag = Pop(S, x);
+    if(flag){
+        printf("出栈元素是%d\n", x);
+    }
 }

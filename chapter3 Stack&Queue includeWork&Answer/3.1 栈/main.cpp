@@ -1,3 +1,8 @@
+/*
+ * @Author: 2361067080@qq.com
+ * @Date: 2022-05-15 17:42:42
+ * @Description: 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -23,8 +28,7 @@ bool StackEmpty(SqStack& S) {
 
 //入栈
 bool Push(SqStack& S, ElemType x) {
-    if (S.top == MaxSize - 1)  //数组的大小不能改变，避免访问越界
-    {
+    if (S.top == MaxSize - 1) {//数组的大小不能改变，避免访问越界
         return false;
     }
     S.data[++S.top] = x;
