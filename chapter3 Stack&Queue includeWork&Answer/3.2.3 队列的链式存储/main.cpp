@@ -1,3 +1,8 @@
+/*
+ * @Author: 2361067080@qq.com
+ * @Date: 2022-05-15 17:42:43
+ * @Description: 
+ */
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -37,8 +42,10 @@ void EnQueue(LinkQueue& Q, ElemType x) {
 bool DeQueue(LinkQueue& Q, ElemType& x) {
     if (Q.front == Q.rear)
         return false;             //队列为空
+    
     LinkNode* p = Q.front->next;  //头结点什么都没存，所以头结点的下一个节点才有数据
     x = p->data;
+    
     Q.front->next = p->next;  //断链
     if (Q.rear == p)          //删除的是最后一个元素
         Q.rear = Q.front;     //队列置为空
