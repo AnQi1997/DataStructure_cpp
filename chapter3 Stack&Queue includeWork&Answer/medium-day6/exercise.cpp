@@ -63,7 +63,7 @@ bool EnQueue(SqQueue& Q, ElemType x) {
 }
 
 //出队
-bool DeQueue(SqQueue Q, ElemType& x) {
+bool DeQueue(SqQueue& Q, ElemType& x) {
     if (Q.rear == Q.front)
         return false;
     x = Q.data[Q.front];
@@ -114,6 +114,12 @@ int main() {
     else
         printf("false\n");
 
+    flag = DeQueue(Q, x);
+    if (flag)
+        printf("出队元素是：%d\n", x);
+    flag = DeQueue(Q, x);
+    if (flag)
+        printf("出队元素是：%d\n", x);
     flag = DeQueue(Q, x);
     if (flag)
         printf("出队元素是：%d\n", x);
