@@ -19,7 +19,7 @@ void InitStack(SqStack& S) {
     S.top = -1;  //´ú±íÕ»Îª¿Õ
 }
 
-bool StackEmpty(SqStack& S) {
+bool StackEmpty(SqStack S) {
     if (S.top == -1)
         return true;
     else
