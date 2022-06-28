@@ -113,6 +113,9 @@ int main() {
         printf("true\n");
     else
         printf("false\n");
+    //输出false的原因：
+    // MaxSize值是5，牺牲一个空间做为Q.rear
+    //所以最大空间为4，数组下标范围：0-3
 
     flag = DeQueue(Q, x);
     if (flag)
@@ -126,4 +129,5 @@ int main() {
     flag = DeQueue(Q, x);
     if (flag)
         printf("出队元素是：%d\n", x);
+    system("pause");
 }
