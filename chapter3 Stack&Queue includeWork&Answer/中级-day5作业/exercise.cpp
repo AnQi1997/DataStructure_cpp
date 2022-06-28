@@ -20,7 +20,7 @@ typedef struct LNode {
 void PrintList(LinkList L) {
     L = L->next;
     while (L) {
-        printf("%3d", L->data);
+        printf("%6d", L->data);
         L = L->next;
     }
     printf("\n");
@@ -65,10 +65,11 @@ LNode* GetElem(LinkList L, int i) {
 }
 
 //在第i个位置插入一个值
-bool List_Insert_i_x(LinkList L, ElemType& x, int i) {
+bool List_Insert_i_x(LinkList L, int i, ElemType x) {
     //获得i-1个位置
-    LNode* p = GetElem(L, i);
-    if(NULL == p)
+    LNode* p = GetElem(L, i - 1);
+
+    if (NULL == p)
         return false;
 
     LNode* s = (LNode*)malloc(sizeof(LNode));
@@ -81,8 +82,18 @@ bool List_Insert_i_x(LinkList L, ElemType& x, int i) {
 }
 
 //删除第i个位置的元素
-bool ListDelete(LinkList L, int i){
+bool ListDelete(LinkList L, int i) {
+    LNode* p = GetElem(L, i - 1);
 
+    if (NULL == p)
+        return false;
+
+    LNode* q;
+    q = p->next;
+    p->next = q->next;
+
+    free(q);
+    return true;
 }
 
 int main() {
@@ -92,4 +103,7 @@ int main() {
 
     LNode* p = GetElem(L, 2);
     printf("%d\n", p->data);
+
+    List_Insert_i_x(L, 2, 100);
+    PrintList(L);
 }
