@@ -1,7 +1,7 @@
 /*
  * @Author: 2361067080@qq.com
  * @Date: 2022-05-15 17:42:43
- * @Description: 
+ * @Description:
  */
 #define _CRT_SECURE_NO_WARNINGS
 
@@ -10,10 +10,12 @@
 
 #define MaxSize 5
 typedef int ElemType;
+
 typedef struct {
     ElemType data[MaxSize];  //数组
     int top;
 } SqStack;
+
 void InitStack(SqStack& S) {
     S.top = -1;  //代表栈为空
 }
