@@ -1,13 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
-// TODO 曾曾腔陪ㄐㄐㄐ
+// TODO 陪
 
 typedef int ElemType;
 
