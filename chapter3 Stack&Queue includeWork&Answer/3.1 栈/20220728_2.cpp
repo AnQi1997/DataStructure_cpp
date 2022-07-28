@@ -1,7 +1,7 @@
 /*
  * @Author: 2361067080@qq.com
- * @Date: 2022-07-28 19:16:19
- * @Description: µÚ¶þ´ÎÁ·Ï°Õ»³­
+ * @Date: 2022-07-28 19:45:56
+ * @Description: µÚ¶þ´ÎÁ·Ï°Õ»£¬×Ô¼ºÐ´
  */
 #include <stdio.h>
 #include <stdlib.h>
@@ -9,7 +9,6 @@
 #define MaxSize 50
 
 typedef int ElemType;
-
 typedef struct {
     ElemType data[MaxSize];
     int top;
@@ -19,7 +18,6 @@ typedef struct {
 void InitStack(SqStack& S) {
     S.top = -1;
 }
-
 //ÅÐÕ»¿Õ
 bool StackEmpty(SqStack S) {
     if (-1 == S.top)
@@ -27,24 +25,21 @@ bool StackEmpty(SqStack S) {
     else
         return false;
 }
-
-///ÈëÕ»
+//½øÕ»
 bool Push(SqStack& S, ElemType x) {
-    if (S.top == MaxSize - 1)
+    if (MaxSize - 1 == S.top)
         return false;
     S.data[++S.top] = x;
     return true;
 }
-
 //³öÕ»
 bool Pop(SqStack& S, ElemType& x) {
     if (-1 == S.top)
         return false;
     x = S.data[S.top--];
-    return false;
+    return true;
 }
-
-//¶ÁÕ»¶¥ÔªËØ    
+//¶ÁÕ»¶¥ÔªËØ
 bool GetTop(SqStack& S, ElemType& x) {
     if (-1 == S.top)
         return false;
@@ -56,15 +51,15 @@ int main() {
     SqStack S;
     InitStack(S);
 
-    bool flag = StackEmpty(S);
-    if (flag)
+    if (StackEmpty(S)) {
         printf("Õ»¿Õ\n");
-    else
+    } else {
         printf("Õ»²»¿Õ\n");
+    }
 
-    Push(S, 1);
-    Push(S, 2);
-    Push(S, 3);
+    Push(S, 10);
+    Push(S, 20);
+    Push(S, 30);
 
     ElemType x;
     GetTop(S, x);
