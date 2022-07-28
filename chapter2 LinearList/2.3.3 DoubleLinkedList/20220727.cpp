@@ -1,24 +1,19 @@
+/*
+ * @Author: 2361067080@qq.com
+ * @Date: 2022-07-27 19:18:06
+ * @Description: 第二次练习双向链表
+ */
 #include <stdio.h>
 #include <stdlib.h>
-// TODO 爷抄的！
+
 typedef int ElemType;
 
-//相比单链表，增加了一个指向前驱的prior指针，因此
-//按值查找和按位查找的操作与单链表相同。
-//因为要对prior指针做出修改，关键是保证修改过程中不断链
-//又双链表可以很方便的找到其前驱结点，因此
-//插入 删除操作时间复杂度仅为O(1)
 typedef struct DNode {
     ElemType data;
     struct DNode *prior, *next;
 } DNode, *DLinkList;
 
-void PrintDList(DLinkList DL) {
-    // DNode* p = DL->next;
-    // while(p){
-    //     printf("%6d", p->data);
-    //     p = p->next;
-    // }
+void PrintDLinkList(DLinkList DL) {
     DL = DL->next;
     while (DL) {
         printf("%6d", DL->data);
@@ -27,24 +22,23 @@ void PrintDList(DLinkList DL) {
     printf("\n");
 }
 
-//双向链表的头插法
+//双向链表头插法
 DLinkList DList_Head_Insert(DLinkList& DL) {
-    DL = (DNode*)malloc(sizeof(DNode));
-    DL->next = NULL;
+    DL = (DLinkList)malloc(sizeof(DNode));
     DL->prior = NULL;
+    DL->next = NULL;
 
     DNode* s;
     int x;
     scanf("%d", &x);
+
     while (x != 9999) {
         s = (DNode*)malloc(sizeof(DNode));
         s->data = x;
 
         s->next = DL->next;
-        //插入第一个结点时，不需要这一步操作
-        if (DL->next) {
+        if (DL->next)  //只有一个头结点时不必执行这一句
             DL->next->prior = s;
-        }
         s->prior = DL;
         DL->next = s;
 
@@ -59,7 +53,6 @@ DLinkList DList_Tail_Insert(DLinkList& DL) {
     DL->prior = NULL;
 
     DNode *s, *r = DL;
-
     int x;
     scanf("%d", &x);
 
@@ -77,13 +70,14 @@ DLinkList DList_Tail_Insert(DLinkList& DL) {
     return DL;
 }
 
-//按序号查找结点值 ： 查找第i个
+//按序号查找结点值：查找第i个结点
 DNode* GetElem(DLinkList DL, int i) {
     int j = 1;
     if (i == 0)
-        return DL;  //返回头结点，头结点啥也妹有
-    if (i < 1)      // i<0时，无效
+        return DL;
+    if (i < 1)
         return NULL;
+
     DNode* p = DL->next;
     while (p && j < i) {
         p = p->next;
@@ -92,14 +86,13 @@ DNode* GetElem(DLinkList DL, int i) {
     return p;
 }
 
-//将新结点插入到第i个位置
-bool DListInsert(DLinkList& DL, ElemType e, int i) {
-    // 找到前一个结点
+//将新节点插入到第i个位置，插入结点值为e
+bool DListInsert(DLinkList& DL, int i, ElemType e) {
     DNode* p = GetElem(DL, i - 1);
 
     if (p == NULL)
         return false;
-
+        
     DNode* s = (DNode*)malloc(sizeof(DNode));
     s->data = e;
 
@@ -113,40 +106,35 @@ bool DListInsert(DLinkList& DL, ElemType e, int i) {
 
 //删除第i个结点
 bool ListDelete(DLinkList& DL, int i) {
-    //找到第i-1个结点
     DNode* p = GetElem(DL, i - 1);
+
     if (NULL == p)
-        // 删除位置的前一个位置不存在，就是插入位置不合法
         return false;
 
     DNode* q = p->next;
+    if (NULL == q)
+        return false;
 
-    if (NULL == q)      //删除位置不存在
-        return false;   // p是最后一个结点
-                        //删除的是最后一个结点的后面的位置
-    p->next = q->next;  //断链  prior还没断
-
-    if (q->next != NULL)
-        // q->next != NULL 不是最后一个结点
-        // 断掉前链
-        //
-        // q->next == NULL时删除，q是最后一个结点
-        // 不会走这个if，直接释放结点
+    p->next = q->next;
+    //如果删除的不是尾结点，则执行下一句
+    if (q->next)
         q->next->prior = p;
+
     free(q);
     return true;
 }
 
 int main() {
     DLinkList DL;
-
     // DList_Head_Insert(DL);
-    // PrintDList(DL);
+    // PrintDLinkList(DL);
 
     DList_Tail_Insert(DL);
-    PrintDList(DL);
+    PrintDLinkList(DL);
 
-    //按序号查找
-    DNode* p = GetElem(DL, 2);
-    printf("%d", p->data);
+    // DNode* p = GetElem(DL, 2);
+    // printf("%d\n", p->data);
+
+    DListInsert(DL, 2, 100);
+    PrintDLinkList(DL);
 }
