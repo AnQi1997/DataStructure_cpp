@@ -1,61 +1,61 @@
 /*
  * @Author: 2361067080@qq.com
- * @Date: 2022-06-27 15:10:30
- * @Description: 链队列
- * 初始化
- * 判队空
- * 入队
- * 出队
+ * @Date: 2022-07-29 15:09:44
+ * @Description: 链队列（抄）
  */
 #include <stdio.h>
 #include <stdlib.h>
 
 typedef int ElemType;
 
-//结点结构
 typedef struct LinkNode {
     ElemType data;
     struct LinkNode* next;
 } LinkNode;
 
-//链队列结构
 typedef struct {
-    LinkNode *front, *rear;
+    LinkNode *rear, *front;
 } LinkQueue;
 
+//初始化
 void InitQueue(LinkQueue& Q) {
     Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));
-    Q.rear->next = NULL;
+    Q.front->next = NULL;
 }
-
 //判队空
 bool IsEmpty(LinkQueue Q) {
-    if (Q.front == Q.rear)
+    if (Q.rear == Q.front)
         return true;
     else
         return false;
 }
 
-//尾插法入队
-void EnQueue(LinkQueue& Q, ElemType x) {
+//入队
+//用单链表表示的链式队列特别适合于数据元素变动比较大的情形，
+//而且不存在队列满且产生溢出的问题
+bool EnQueue(LinkQueue& Q, ElemType x) {
     LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
     s->data = x;
 
     s->next = NULL;
     Q.rear->next = s;
+
     Q.rear = s;
+    return true;
 }
 
-//头插法， 出队
+//出队
 bool DeQueue(LinkQueue& Q, ElemType& x) {
-    if (Q.front == Q.rear)
+    //若队空，返回false
+    if (Q.rear == Q.front)
         return false;
 
     LinkNode* p = Q.front->next;
     x = p->data;
 
     Q.front->next = p->next;
-    if (p == Q.rear)
+
+    if (Q.rear == p)  //如果只有一个结点
         Q.front = Q.rear;
     free(p);
     return true;
@@ -63,33 +63,31 @@ bool DeQueue(LinkQueue& Q, ElemType& x) {
 
 int main() {
     LinkQueue Q;
-    bool ret;
+    bool flag;
 
     InitQueue(Q);
 
-    //判队空
-    ret = IsEmpty(Q);
-    if (ret)
+    if (IsEmpty(Q))
         printf("队空\n");
     else
         printf("队不空\n");
 
-    //入队
-    EnQueue(Q, 1);
-    EnQueue(Q, 2);
-    EnQueue(Q, 3);
+    //进队
+    EnQueue(Q, 10);
+    EnQueue(Q, 20);
+    EnQueue(Q, 30);
 
     //出队
     ElemType x;
-    ret = DeQueue(Q, x);
-    if (ret)
-        printf("出队成功，出队元素是：%d\n", x);
 
-    ret = DeQueue(Q, x);
-    if (ret)
+    flag = DeQueue(Q, x);
+    printf("出队成功，出队元素是：%d\n", x);
+    if (flag)
         printf("出队成功，出队元素是：%d\n", x);
-
-    ret = DeQueue(Q, x);
-    if (ret)
+    flag = DeQueue(Q, x);
+    if (flag)
+        printf("出队成功，出队元素是：%d\n", x);
+    flag = DeQueue(Q, x);
+    if (flag)
         printf("出队成功，出队元素是：%d\n", x);
 }

@@ -8,7 +8,7 @@
 
 #define MaxSize 50
 
-typedef int ElemType;
+typedef int ElemType; 
 typedef struct {
     ElemType data[MaxSize];
     int front, rear;
