@@ -3,6 +3,8 @@
  * @Date: 2022-08-02 19:56:20
  * @Description: 二叉树层次建树-抄写
  */
+// #define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -20,10 +22,8 @@ typedef struct tag {
 } tag_t, *ptag_t;
 
 void preOrder(BiTree p) {
-    if(p != NULL){
-        putchar(p->c);//等价于visit函数
-        
-
+    if (p != NULL) {
+        putchar(p->c);  //等价于visit函数
     }
 }
 
@@ -37,7 +37,7 @@ int main() {
     // listnew：队列未插入的新结点
     // pcur：要插入结点的父结点
     char c;  //要插入结点的数据域
-    while (scanf("%d", &c) != EOF) {
+    while (scanf("%c", &c) != EOF) {
         if (c == '\n')
             break;
         //申请空间

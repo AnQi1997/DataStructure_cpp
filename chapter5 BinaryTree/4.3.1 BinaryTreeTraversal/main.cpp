@@ -30,12 +30,13 @@ void InOrder2(BiTree T) {
     SqStack S;
     InitStack(S);
     BiTree p = T;
-    while (p || !StackEmpty(S))  //逻辑或||
-    {
-        if (p) {  //当一个结点不为空，压栈，并取左孩子
+    while (p || !StackEmpty(S)) {  //逻辑或||
+        if (p) {
+            //当一个结点不为空，压栈，并取左孩子
             Push(S, p);
             p = p->lchild;
-        } else {  //弹出栈中元素并打印，获取打印元素的右结点
+        } else {
+            //弹出栈中元素并打印，获取打印元素的右结点
             Pop(S, p);
             putchar(p->c);
             p = p->rchild;
