@@ -85,7 +85,6 @@ int main() {
     while (scanf("%c", &c) != EOF) {
         if (c == '\n')
             break;
-        // TODO
         pnew = (BiTree)calloc(1, sizeof(BiTNode));
         pnew->c = c;
 

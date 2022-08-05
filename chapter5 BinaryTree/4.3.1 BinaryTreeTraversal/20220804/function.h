@@ -91,6 +91,7 @@ void EnQueue(LinkQueue& Q, ElemType x) {
     Q.rear = s;
     // return true;
 }
+
 //³ö¶Ó
 bool DeQueue(LinkQueue& Q, ElemType& x) {
     if (Q.front == Q.rear)
