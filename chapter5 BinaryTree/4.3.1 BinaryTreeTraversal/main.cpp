@@ -76,8 +76,10 @@ int main() {
             break;
         pnew = (BiTree)calloc(1, sizeof(BiTNode));    // calloc申请空间并对空间进行初始化，赋值为0
         pnew->c = c;                                  //数据放进去
-        listpnew = (ptag_t)calloc(1, sizeof(tag_t));  //给队列结点申请空间
+
+        listpnew = (ptag_t)calloc(1, sizeof(tag));  //给队列结点申请空间
         listpnew->p = pnew;
+
         if (NULL == tree) {
             tree = pnew;       //树的根
             phead = listpnew;  // phead是队列头

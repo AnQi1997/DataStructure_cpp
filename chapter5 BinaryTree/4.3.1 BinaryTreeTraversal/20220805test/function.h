@@ -1,42 +1,42 @@
 /*
  * @Author: 2361067080@qq.com
- * @Date: 2021-10-22 10:46:09
- * @Description:
+ * @Date: 2022-08-05 11:44:13
+ * @Description: 二叉树遍历自己写
  */
 #include <stdio.h>
 #include <stdlib.h>
 
+//////////////////二叉树
 typedef char BiElemType;
-typedef struct BiTNode {
-    BiElemType c;  // c就是书籍上的data
-    struct BiTNode* lchild;
-    struct BiTNode* rchild;
-} BiTNode, *BiTree;
+typedef struct BNode {
+    BiElemType c;
+    struct BNode* lchild;
+    struct BNode* rchild;
+} BTNode, *BTree;
 
-//队列结构
+//辅助链表 自己定义表头表尾
 typedef struct tag {
-    BiTree p;  //树的某一个结点的地址值
+    // BNode* p;  //某二叉树的地址，用指针
+    BTree p;
     struct tag* pnext;
 } tag_t, *ptag_t;
 
-//栈的相关数据结构
+//////////////////栈
+//中序遍历非递归用到
 #define MaxSize 50
-typedef BiTree ElemType;
+// typedef BNode ElemType;
+typedef BTree ElemType;
 
 typedef struct {
     ElemType data[MaxSize];
     int top;
 } SqStack;
 
-// void InitStack(SqStack& S);
-// bool StackEmpty(SqStack& S);
-// bool Push(SqStack& S, ElemType x);
-// bool Pop(SqStack& S, ElemType& x);
-// bool GetTop(SqStack& S, ElemType& x);
 //初始化
 void InitStack(SqStack& S) {
     S.top = -1;
 }
+
 //判栈空
 bool StackEmpty(SqStack S) {
     if (-1 == S.top)
@@ -44,6 +44,7 @@ bool StackEmpty(SqStack S) {
     else
         return false;
 }
+
 //进栈
 bool Push(SqStack& S, ElemType x) {
     if (MaxSize - 1 == S.top)
@@ -66,52 +67,49 @@ bool GetTop(SqStack& S, ElemType& x) {
     return true;
 }
 
-//队列的相关数据结构
+////////////////////队列
+//层次遍历使用
+//链队列
 typedef struct LinkNode {
     ElemType data;
     struct LinkNode* next;
 } LinkNode;
-
 typedef struct {
     LinkNode *front, *rear;
 } LinkQueue;
-// void InitQueue(LinkQueue& Q);
-// bool IsEmpty(LinkQueue Q);
-// void EnQueue(LinkQueue& Q, ElemType x);
-// bool DeQueue(LinkQueue& Q, ElemType& x);
-
+//初始化
 void InitQueue(LinkQueue& Q) {
-    Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));  //头和尾指向同一个结点
-    Q.front->next = NULL;                                    //头结点的next指针为NULL
+    Q.front = Q.rear = (LinkNode*)malloc(sizeof(LinkNode));
+    Q.front->next = NULL;
 }
 
-bool IsEmpty(LinkQueue Q) {
+//判队空
+bool QueueEmpty(LinkQueue Q) {
     if (Q.front == Q.rear)
         return true;
     else
         return false;
 }
-
-//入队，尾部插入法
+//入队
 void EnQueue(LinkQueue& Q, ElemType x) {
+    //队尾入队
     LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
     s->data = x;
     s->next = NULL;
-    Q.rear->next = s;  // rear始终指向尾部
+
+    Q.rear->next = s;
     Q.rear = s;
 }
-
-//出队  头部删除法
+//出队
 bool DeQueue(LinkQueue& Q, ElemType& x) {
+    //队头出队
     if (Q.front == Q.rear)
-        return false;  //队列为空
-
-    LinkNode* p = Q.front->next;  //头结点什么都没存，所以头结点的下一个节点才有数据
+        return false;
+    LinkNode* p = Q.front->next;
     x = p->data;
-
-    Q.front->next = p->next;  //断链
-    if (Q.rear == p)          //只有一个元素，即删除的是最后一个元素
-        Q.rear = Q.front;     //队列置为空
+    Q.front->next = p->next;
+    if (Q.rear == p)
+        Q.rear = Q.front;  // Q.rear前移
     free(p);
     return true;
 }
