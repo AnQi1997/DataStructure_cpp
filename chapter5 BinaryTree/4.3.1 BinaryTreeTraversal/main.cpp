@@ -32,11 +32,12 @@ void InOrder2(BiTree T) {
     BiTree p = T;
     while (p || !StackEmpty(S)) {  //逻辑或||
         if (p) {
-            //当一个结点不为空，压栈，并取左孩子
+            //不空就一直往左走
             Push(S, p);
             p = p->lchild;
         } else {
-            //弹出栈中元素并打印，获取打印元素的右结点
+            //p空了，那么左子树遍历完毕，元素出栈
+            //接下来遍历右子树
             Pop(S, p);
             putchar(p->c);
             p = p->rchild;
