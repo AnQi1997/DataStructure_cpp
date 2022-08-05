@@ -57,8 +57,11 @@ void InOrder2(BTree T){
             p = p->rchild;
         }
     }
-
 }
+
+
+
+
 
 // void LevelOrder(BTree T) {
 //     LinkQueue Q;
@@ -74,22 +77,23 @@ void InOrder2(BTree T){
 //             EnQueue(Q, p->rchild);
 //     }
 // }
-void LevelOrder(BTree T){
+void LevelOrder(BTree T) {
     LinkQueue Q;
     InitQueue(Q);
 
     BTree p;
+
     EnQueue(Q, T);
 
-    while(!QueueEmpty(Q)){
+    while (!QueueEmpty(Q)) {
         DeQueue(Q, p);
         putchar(p->c);
-        if(p->lchild)
+
+        if (p->lchild)
             EnQueue(Q, p->lchild);
-        if(p->rchild)
+        if (p->rchild)
             EnQueue(Q, p->rchild);
     }
-
 }
 
 int main() {
