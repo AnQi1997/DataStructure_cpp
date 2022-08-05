@@ -82,19 +82,18 @@ bool QueueEmpty(LinkQueue Q) {
 }
 
 //进队
-bool EnQueue(LinkQueue& Q, ElemType x) {
-    // if (Q.rear == Q.front)
-    //     return false;
+void EnQueue(LinkQueue& Q, ElemType x) {
+    //链队列不存在溢出的情况
     LinkNode* s = (LinkNode*)malloc(sizeof(LinkNode));
     s->data = x;
     s->next = NULL;
     Q.rear->next = s;
     Q.rear = s;
-    return true;
+    // return true;
 }
 //出队
 bool DeQueue(LinkQueue& Q, ElemType& x) {
-    if (Q.rear == Q.front)
+    if (Q.front == Q.rear)
         return false;
 
     LinkNode* p = Q.front->next;
@@ -102,7 +101,9 @@ bool DeQueue(LinkQueue& Q, ElemType& x) {
 
     Q.front->next = p->next;
     if (Q.rear == p)
-        Q.front = Q.rear;
+        Q.rear = Q.front;
+        // Q.front = Q.rear;
+        //这一句倒过来会有什么结果？
     free(p);
     return true;
 }
