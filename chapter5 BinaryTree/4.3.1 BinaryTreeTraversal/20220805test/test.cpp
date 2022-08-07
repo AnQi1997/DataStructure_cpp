@@ -41,27 +41,40 @@ void PostOrder(BTree T) {
 //     }
 // }
 
-void InOrder2(BTree T){
+// void InOrder2(BTree T){
+//     SqStack S;
+//     InitStack(S);
+//     BTree p = T;
+//     while(p || !StackEmpty(S)){
+//         if(p){
+//             Push(S, p);
+//             p = p->lchild;
+//         }else{
+//             Pop(S, p);
+//             putchar(p->c);
+//             p = p->rchild;
+//         }
+//     }
+// }
+
+void InOrder2(BTree T) {
+    //ջ
     SqStack S;
     InitStack(S);
 
     BTree p = T;
 
-    while(p || !StackEmpty(S)){
-        if(p){
+    while (p || !StackEmpty(S)) {
+        if (p) {
             Push(S, p);
             p = p->lchild;
-        }else{
+        } else {
             Pop(S, p);
             putchar(p->c);
             p = p->rchild;
         }
     }
 }
-
-
-
-
 
 // void LevelOrder(BTree T) {
 //     LinkQueue Q;
@@ -77,6 +90,22 @@ void InOrder2(BTree T){
 //             EnQueue(Q, p->rchild);
 //     }
 // }
+
+// void LevelOrder(BTree T) {
+//     LinkQueue Q;
+//     InitQueue(Q);
+//     BTree p;
+//     EnQueue(Q, T);
+//     while (!QueueEmpty(Q)) {
+//         DeQueue(Q, p);
+//         putchar(p->c);
+//         if (p->lchild)
+//             EnQueue(Q, p->lchild);
+//         if (p->rchild)
+//             EnQueue(Q, p->rchild);
+//     }
+// }
+
 void LevelOrder(BTree T) {
     LinkQueue Q;
     InitQueue(Q);
@@ -88,11 +117,16 @@ void LevelOrder(BTree T) {
     while (!QueueEmpty(Q)) {
         DeQueue(Q, p);
         putchar(p->c);
-
-        if (p->lchild)
+        if (p->lchild) {
+            // p = p->lchild;
+            // EnQueue(Q, p);
             EnQueue(Q, p->lchild);
-        if (p->rchild)
+        }
+        if (p->rchild) {
+            // EnQueue(Q, p);
+            // p = p->rchild;
             EnQueue(Q, p->rchild);
+        }
     }
 }
 
