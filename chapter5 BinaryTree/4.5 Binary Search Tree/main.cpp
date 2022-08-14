@@ -7,8 +7,8 @@ typedef struct BSTNode {
     struct BSTNode *lchild, *rchild;
 } BSTNode, *BiTree;
 // 54,20,66,40,28,79,58
-int BST_Insert(BiTree& T, KeyType k) {
-    if (NULL == T) {  //为新节点申请空间，第一个结点作为树根
+int BST_Insert(BiTree& T, KeyType k) {  //&很关键，
+    if (NULL == T) {                    //为新节点申请空间，第一个结点作为树根
         T = (BiTree)malloc(sizeof(BSTNode));
         T->key = k;
         T->lchild = T->rchild = NULL;
@@ -41,6 +41,7 @@ BSTNode* BST_Search(BiTree T, KeyType key, BiTree& p) {
     }
     return T;
 }
+
 //这个书上没有二叉排序树删除代码--考大题没那么高
 void DeleteNode(BiTree& root, KeyType x) {
     if (root == NULL) {
