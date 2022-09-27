@@ -36,7 +36,8 @@ void ST_Init(SSTable& ST, int len) {
     //因此，C提供了srand()函数，它的原型是 void srand( int a)。用来改变这个种子值。
     // srand( (time(NULL) )中time(NULL)函数是得到一个从1900年1月1日到现在的时间秒数，
     //这样每一次运行程序的时间的不同就可以保证得到不同的随机数了。
-    srand(time(NULL));
+    //为了验证排序，保证没有结果那么巧合
+    srand(time(NULL));  
     //为啥这里零号位置也随机了数据，为折半查找服务
     for (i = 0; i < ST.TableLen; i++) {
         //下标范围：0——ST.TableLen-1

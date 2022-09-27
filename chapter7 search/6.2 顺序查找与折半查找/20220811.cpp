@@ -59,4 +59,6 @@ int main() {
     printf("\n对随机数组进行快速排序后的结果：\n");
     qsort(ST.elem, ST.TableLen, sizeof(ElemType), compare);
 
+    
+
 }
