@@ -109,6 +109,21 @@ bool ListDelete(LinkList& L, int i) {
     return true;
 }
 
+
+//TODO
+int CountNum(LinkList L) {
+    int count = 0;
+    if (L == NULL){
+        L = L->next;
+        return 0;
+    }
+    while (L->data) {
+        count++;
+        L = L->next;
+    }
+    return count;
+}
+
 void PrintList(LinkList L) {
     L = L->next;
     while (L) {
@@ -125,33 +140,36 @@ int main() {
     printf("头插法建立的单链表：\n");
     PrintList(L);
 
-    ListTailInsert(L);
-    printf("尾插法建立的单链表：\n");
-    PrintList(L);
+    int num = CountNum(L);
+    printf("%d\n", num);
 
-    //按序号查找
-    LNode* p = GetElem(L, 2);
-    printf("单链表第2个元素是：%d\n", p->data);
+    // ListTailInsert(L);
+    // printf("尾插法建立的单链表：\n");
+    // PrintList(L);
 
-    //按值查找
-    p = LocateElem(L, 10);
-    printf("单链表中值为10的元素是：%d\n", p->data);
+    // //按序号查找
+    // LNode* p = GetElem(L, 2);
+    // printf("单链表第2个元素是：%d\n", p->data);
 
-    //新结点插入第i个位置
-    bool flag = ListInsert(L, 2, 100);
-    if (flag) {
-        printf("新结点值为100，插入后：");
-        PrintList(L);
-    } else
-        printf("插入失败\n");
+    // //按值查找
+    // p = LocateElem(L, 10);
+    // printf("单链表中值为10的元素是：%d\n", p->data);
 
-    //删除第i个位置
-    printf("第二个元素删除前的单链表如下：\n");
-    PrintList(L);
-    flag = ListDelete(L, 2);
-    if (flag) {
-        printf("第二个位置删除后的单链表如下：\n");
-        PrintList(L);
-    } else
-        printf("删除失败\n");
+    // //新结点插入第i个位置
+    // bool flag = ListInsert(L, 2, 100);
+    // if (flag) {
+    //     printf("新结点值为100，插入后：");
+    //     PrintList(L);
+    // } else
+    //     printf("插入失败\n");
+
+    // //删除第i个位置
+    // printf("第二个元素删除前的单链表如下：\n");
+    // PrintList(L);
+    // flag = ListDelete(L, 2);
+    // if (flag) {
+    //     printf("第二个位置删除后的单链表如下：\n");
+    //     PrintList(L);
+    // } else
+    //     printf("删除失败\n");
 }
